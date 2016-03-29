@@ -11,9 +11,9 @@ def send(num, mssg):
 
 
 def main():
-	names = ['tnrglantz', 'smirabito']
+	names = ['tnrglantz']
 
-	ldap = cshldap.LDAP("tnrglantz", secrets.ldappass)
+	ldap = cshldap.LDAP(secrets.ldapusername, secrets.ldappass)
 	for name in names:
 		member = ldap.member(name)
 		number = "".join(_ for _ in member['mobile'][0] if _ in "1234567890")

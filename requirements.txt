@@ -1,0 +1,3 @@
+requests
+csh==0.2.1
+
