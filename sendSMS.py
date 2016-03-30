@@ -98,6 +98,7 @@ sendNonCSHText is called when a user specifies they want to send a text message 
 """
 def sendNonCSHText(phoneNum, mssg):
 	send(int(phoneNum),commonName+" is sending you a message:\n"+ mssg)
+	startUpPrompt()
 """
 sendCSHText is called when a user wants to send a message internally to another CSHer. The user must know the other CSHer's username and then
 	provide a message to send to that user.
