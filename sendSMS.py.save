@@ -1,0 +1,37 @@
+import requests, secrets
+from csh import cshldap
+
+def send(num, mssg):
+	message = {
+                "number": num,
+                "message": mssg
+        }
+	r = requests.post('http://textbelt.com/text', message)
+        print r.json()
+
+
+def main():
+	#enter the uid's for the reciepts of the message
+	names = ['tnrglantz','rswiernik','victoria']
+	#a CSH account must be used to make calls to ldap. The username and password stored in secrets.py is used for authentication
+	ldap = cshldap.LDAP(secrets.ldapusername, secrets.ldappass)
+	
+	#iterates through all of the members added to names
+	for name in names:
+		member = ldap.member(name)
+		#sends a message to all of the numbers stored in ldap for user specified
+		for number in member['mobile']:
+			clean_number = ""
+			for digit in number:
+				#only numbers stored in the phone number field are added to clean_number
+				if digit in "1234567890":
+					clean_number += digit
+			inputDate = member['memberSince'][0]
+			#memberDate is the date formatted String MM/DD/YYYY
+			memberDate = inputDate[4:6] +"/"+ inputDate[6:8]+"/"+inputDate[0:
+			print "Hi "+member['cn'][0]+". I see that you have been a member since "+memberDate+". I can also see that you have "+member['housingPoints'][0]+"housing points."
+			
+			send(int(clean_number), "Hi "+member['cn'][0]+". I see that you have been a member since "+memberDate+".")
+
+if __name__ == '__main__':
+	main()
