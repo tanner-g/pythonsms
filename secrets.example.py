@@ -1,1 +1,1 @@
-ldappass = ''
+ldappass = 'password'
