@@ -1,1 +1,2 @@
+ldapusername = 'username'
 ldappass = 'password'
