@@ -12,7 +12,7 @@ def send(num, mssg):
 
 def main():
 	#enter the uid's for the reciepts of the message
-	names = ['tnrglantz','rswiernik','victoria']
+	names = ['name1','name2','name3']
 	#a CSH account must be used to make calls to ldap. The username and password stored in secrets.py is used for authentication
 	ldap = cshldap.LDAP(secrets.ldapusername, secrets.ldappass)
 	
